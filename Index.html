@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bandar ki Kahani - AI 3D Maker</title>
+<style>
+body{font-family:sans-serif;background:#111;color:#fff;padding:15px}
+h2{text-align:center;color:#ff9800}
+.card{background:#222;padding:15px;border-radius:12px;margin-bottom:15px}
+button{background:#ff5722;color:#fff;border:none;padding:12px;width:100%;border-radius:8px;font-weight:bold;margin-top:10px;cursor:pointer}
+input,select,textarea{width:100%;padding:10px;border-radius:8px;border:none;margin-top:5px;background:#333;color:#fff}
+.scene{border:1px solid #444;padding:10px;border-radius:10px;margin-top:10px;background:#1e1e1e}
+.scene img{width:100%;border-radius:8px}
+</style>
+</head>
+<body>
+
+<h2>🐒 Bandar ki Kahani - AI 3D Maker</h2>
+
+<div class="card">
+<h3>Step 1: Story Banao</h3>
+<label>Story Name</label>
+<input id="storyName" value="Bandar ki kheti">
+<label>Animal</label>
+<select id="animal"><option>Bandar</option><option>Billie</option><option>Hathi</option><option>Kutta</option></select>
+<button onclick="generateAll()">Generate Script + 3D Images</button>
+</div>
+
+<div class="card">
+<h3>Step 2: Tumhari Story</h3>
+<div id="box"><p>Upar Generate dabao, yahan story aa jayegi.</p></div>
+<button onclick="downloadStory()" style="background:#2196F3">📥 Script Download Karo</button>
+</div>
+
+<script>
+const scenes=[
+"bandar youtube dekh kar kisan banne ka soch raha hai, 3d cartoon style",
+"bandar khet me kurkure bo raha hai funny face, 3d pixar style",
+"asli kisan frooti dalte hue bandar ko dekh kar hairan hai, village background",
+"bandar khet me apni photo wala scarecrow laga raha hai, comedy 3d",
+"khet khali hai bandar udaas hai kisan samjha raha hai, funny ending 3d cartoon"
+];
+function generateAll(){
+let b=document.getElementById('box');
+b.innerHTML="";
+scenes.forEach((p,i)=>{
+let url="https://image.pollinations.ai/prompt/"+encodeURIComponent(p)+"?width=720&height=1280&seed="+Math.floor(Math.random()*1000);
+b.innerHTML+='<div class="scene"><textarea id="t'+i+'" rows="3">Scene '+(i+1)+': '+p+'</textarea><img src="'+url+'" loading="lazy"></div>';
+});
+}
+function downloadStory(){
+let t="";
+for(let i=0;i<5;i++){
+let el=document.getElementById('t'+
